@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Character Animation — Yuki Ip</title>
+  <meta name="description"
+    content="One AI character singing in lip-synced music videos and talking in vlogs. Character consistency across formats, cut to sound.">
+  <style>
+    /* ============================================================
+     REEL TEMPLATE — worked example (this copy is the lecture reel).
+
+     Keep this whole <style> block VERBATIM in every reel — the warm-paper
+     editorial design is the house style and should not drift between jobs.
+     Rewrite only the BODY content: <title>/meta, masthead headline + lede,
+     the gap-note, the index nav, and one <section class="work"> per video.
+
+     Each video section is framed for ONE buyer-relevant point. Below, the
+     framing register is lecture/interview craft; for a different job, change
+     the register (e.g. short-form hooks, brand-film polish) but keep the
+     same HTML structure and the ".demo" callout naming the relevant decision.
+     ============================================================ */
+
+    :root {
+      --paper: #f4f1ea;
+      --paper-2: #ebe6db;
+      --ink: #1c1a17;
+      --ink-soft: #4a463f;
+      --ink-faint: #8a8478;
+      --line: #d8d2c4;
+      --line-strong: #bcb4a2;
+
+      --accent: #7c3a2f;
+      --craft: #9a6a1d;
+
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+      --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      --mono: "SF Mono", ui-monospace, "JetBrains Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+
+      --maxw: 920px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.6;
+      background-image:
+        radial-gradient(circle at 20% 0%, rgba(0, 0, 0, 0.015), transparent 60%),
+        radial-gradient(circle at 90% 100%, rgba(0, 0, 0, 0.02), transparent 55%);
+    }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    ::selection {
+      background: rgba(124, 58, 47, 0.20);
+    }
+
+    /* ---------- masthead ---------- */
+    header.masthead {
+      padding: 64px 0 30px;
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    .kicker {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin: 0 0 22px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .kicker .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    h1.title {
+      font-size: clamp(34px, 6vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 18px;
+      font-weight: 600;
+    }
+
+    h1.title em {
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+
+    .lede {
+      font-size: clamp(18px, 2.4vw, 22px);
+      max-width: 64ch;
+      color: var(--ink-soft);
+      margin: 0 0 6px;
+    }
+
+    /* ---------- the note ---------- */
+    .gap-note {
+      margin: 40px 0 8px;
+      border-left: 3px solid var(--accent);
+      background: rgba(124, 58, 47, 0.055);
+      padding: 20px 24px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .gap-note .gn-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 8px;
+      font-weight: 600;
+    }
+
+    .gap-note p {
+      margin: 0;
+      font-size: 17px;
+      color: var(--ink-soft);
+    }
+
+    .gap-note strong {
+      color: var(--ink);
+    }
+
+    /* ---------- index nav ---------- */
+    .index {
+      margin: 44px 0 4px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--line-strong);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .index a {
+      text-decoration: none;
+      color: var(--ink);
+      padding: 16px 18px;
+      border-right: 1px solid var(--line);
+      position: relative;
+      transition: background .18s ease;
+      display: block;
+    }
+
+    .index a:last-child {
+      border-right: none;
+    }
+
+    .index a:hover {
+      background: var(--paper-2);
+    }
+
+    .index a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--accent);
+    }
+
+    .index .num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
+    }
+
+    .index .nm {
+      font-weight: 600;
+      font-size: 16px;
+      margin-top: 4px;
+      line-height: 1.2;
+    }
+
+    .index .tp {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--ink-faint);
+      margin-top: 6px;
+    }
+
+    /* ---------- work sections ---------- */
+    section.work {
+      padding: 70px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .work-head {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .work-index {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
+    }
+
+    .seg-chip {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--accent);
+    }
+
+    h2.work-title {
+      font-size: clamp(28px, 4.5vw, 40px);
+      margin: 6px 0 4px;
+      letter-spacing: -0.015em;
+      font-weight: 600;
+    }
+
+    .credit {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--ink-faint);
+      margin: 0 0 18px;
+    }
+
+    .work-sub {
+      color: var(--ink-soft);
+      margin: 0 0 28px;
+      max-width: 62ch;
+    }
+
+    /* video embed */
+    .video-frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: #15130f;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--line-strong);
+      box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.5);
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ---------- "what it demonstrates" block ---------- */
+    .demo {
+      margin-top: 30px;
+      border: 1px solid rgba(154, 106, 29, 0.38);
+      background: rgba(154, 106, 29, 0.06);
+      border-radius: 6px;
+      padding: 20px 24px;
+    }
+
+    .demo .demo-tag {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--craft);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .demo p {
+      margin: 0;
+      font-size: 16.5px;
+      color: var(--ink-soft);
+    }
+
+    .demo strong {
+      color: var(--ink);
+    }
+
+    /* ---------- closing ---------- */
+    footer.close {
+      padding: 60px 0 90px;
+    }
+
+    footer.close .ct {
+      font-size: clamp(22px, 3.4vw, 30px);
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      margin: 0 0 14px;
+    }
+
+    footer.close p {
+      color: var(--ink-soft);
+      max-width: 60ch;
+      margin: 0 0 10px;
+    }
+
+    footer.close a.mail {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    .sig {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-faint);
+      letter-spacing: 0.06em;
+      margin-top: 26px;
+    }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 720px) {
+      .index {
+        grid-template-columns: 1fr;
+      }
+
+      .index a {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      body {
+        font-size: 17px;
+      }
+    }
+  </style>
+
+  <!-- Page-specific add-on: 4-up index (the house style block above is untouched). -->
+  <style>
+    .index.four {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .index.four a {
+      padding: 16px 14px;
+    }
+
+    @media (max-width: 720px) {
+      .index.four {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- ============ MASTHEAD ============ -->
+    <header class="masthead">
+      <p class="kicker"><span class="dot"></span> Yuki Ip &nbsp;·&nbsp; AI character animation</p>
+      <h1 class="title">One character. <em>Four pieces.</em></h1>
+      <p class="lede">
+        JJ Befuddlez is an AI character who sings in lip-synced music videos and talks to camera
+        in vlogs. The music videos are musical comedy: an everyday scene, a song, and a joke. The
+        vlogs are observational and a little funny. Each piece tests the same question: does the
+        character stay itself from one shot to the next?
+      </p>
+
+      <!-- note -->
+      <div class="gap-note">
+        <p class="gn-tag">◆ On these pieces</p>
+        <p>
+          JJ is my own character, built to test <strong>one AI character across formats</strong>:
+          sung and spoken, vertical and wide. Getting one usable shot takes many tries, so most
+          of the work is choosing which shots to keep and cutting them to the sound.
+        </p>
+      </div>
+
+      <!-- index -->
+      <nav class="index four" aria-label="Reel index">
+        <a href="#treadmill">
+          <span class="num">01</span>
+          <div class="nm">Treadmill</div>
+          <div class="tp">Musical comedy · Lip sync</div>
+        </a>
+        <a href="#router">
+          <span class="num">02</span>
+          <div class="nm">Router</div>
+          <div class="tp">Musical comedy · Lip sync</div>
+        </a>
+        <a href="#street">
+          <span class="num">03</span>
+          <div class="nm">Street vlog</div>
+          <div class="tp">Observational vlog · Close-ups</div>
+        </a>
+        <a href="#roof">
+          <span class="num">04</span>
+          <div class="nm">Roof vlog</div>
+          <div class="tp">Observational vlog · Wide</div>
+        </a>
+      </nav>
+    </header>
+
+    <!-- ============ 01 — TREADMILL ============ -->
+    <section class="work" id="treadmill">
+      <div class="work-head">
+        <span class="work-index">01</span>
+        <span class="seg-chip">Musical comedy · Lip sync · Vertical</span>
+      </div>
+      <h2 class="work-title">JJ Befuddlez — Treadmill</h2>
+      <p class="credit">Character · Direction · AI generation · Edit</p>
+      <p class="work-sub">
+        A 19-second musical comedy. An everyday scene, a trip to the gym, turns into a song with a
+        joke in it. The character sings to camera, with cutaways to the treadmill, torn-paper
+        collage backgrounds, and lyric words on screen as they are sung.
+      </p>
+
+      <div class="video-frame" style="aspect-ratio: 9 / 16; max-width: 360px; margin: 0 auto;">
+        <iframe loading="lazy" title="JJ Befuddlez — Treadmill"
+          src="https://play.gumlet.io/embed/6ad1bc15b4132770146a5904" referrerpolicy="origin"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;clipboard-write;"></iframe>
+      </div>
+
+      <div class="demo">
+        <p class="demo-tag">◆ Relevant to a song-led film</p>
+        <p>
+          <strong>An everyday moment, a song, and a joke.</strong> The gym gag arrives on the line
+          that sets it up, then the edit comes back to the character's face. The picture is built
+          around the lyric, not laid over the song afterward.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ 02 — ROUTER ============ -->
+    <section class="work" id="router">
+      <div class="work-head">
+        <span class="work-index">02</span>
+        <span class="seg-chip">Musical comedy · Lip sync · Vertical</span>
+      </div>
+      <h2 class="work-title">JJ Befuddlez — Router</h2>
+      <p class="credit">Character · Direction · AI generation · Edit</p>
+      <p class="work-sub">
+        A 36-second musical comedy built from home life. The character dances through a living
+        room while a robot vacuum and a glowing router get their own moments in the song. The
+        light moves from sparkly blue to a darker, moodier red as the song builds.
+      </p>
+
+      <div class="video-frame" style="aspect-ratio: 9 / 16; max-width: 360px; margin: 0 auto;">
+        <iframe loading="lazy" title="JJ Befuddlez — Router"
+          src="https://play.gumlet.io/embed/6ad1bc29182c37732223f42e" referrerpolicy="origin"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;clipboard-write;"></iframe>
+      </div>
+
+      <div class="demo">
+        <p class="demo-tag">◆ Relevant to a song-led film</p>
+        <p>
+          <strong>Everyday objects are the jokes, and the character is the warmth.</strong> The vacuum
+          appears on the line about vacuums, and the router closes the song with a burst of
+          light. The set changes around the character, so the song has a shape from start to
+          finish.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ 03 — STREET VLOG ============ -->
+    <section class="work" id="street">
+      <div class="work-head">
+        <span class="work-index">03</span>
+        <span class="seg-chip">Observational vlog · Wide</span>
+      </div>
+      <h2 class="work-title">JJ Befuddlez — Street vlog</h2>
+      <p class="credit">Character · Script · Direction · AI generation · Edit</p>
+      <p class="work-sub">
+        A 77-second observational vlog on a social issue, told with a light, funny touch. The
+        character talks to camera outside a coffee shop and asks where the beans come from.
+        Hand-lettered words land on screen as it speaks, and the edit moves between wide shots
+        and tight close-ups.
+      </p>
+
+      <div class="video-frame">
+        <iframe loading="lazy" title="JJ Befuddlez — Street vlog"
+          src="https://play.gumlet.io/embed/6a40b95c8a92d68f43b0a92e" referrerpolicy="origin"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;clipboard-write;"></iframe>
+      </div>
+
+      <div class="demo">
+        <p class="demo-tag">◆ Relevant to a song-led film</p>
+        <p>
+          <strong>The close-ups are the hard test.</strong> Eyes, fur, and expression have to read
+          as the same character shot after shot, including side glances and head turns. This is
+          the piece where you can judge that for yourself.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ 04 — ROOF VLOG ============ -->
+    <section class="work" id="roof">
+      <div class="work-head">
+        <span class="work-index">04</span>
+        <span class="seg-chip">Observational vlog · Wide</span>
+      </div>
+      <h2 class="work-title">JJ Befuddlez — Roof vlog</h2>
+      <p class="credit">Character · Script · Direction · AI generation · Edit</p>
+      <p class="work-sub">
+        A 65-second observational vlog on a social issue, also with a light, funny touch. The
+        character sits on a rooftop at sunset and talks to camera. A cardboard sign, a city
+        skyline, and a closing question for the viewer finish the piece.
+      </p>
+
+      <div class="video-frame" style="aspect-ratio: 131 / 72;">
+        <iframe loading="lazy" title="JJ Befuddlez — Roof vlog"
+          src="https://play.gumlet.io/embed/6ad1bc58222caf4b18071a2a" referrerpolicy="origin"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;clipboard-write;"></iframe>
+      </div>
+
+      <div class="demo">
+        <p class="demo-tag">◆ Relevant to a song-led film</p>
+        <p>
+          <strong>A new place, the same character.</strong> The street gave way to a rooftop and
+          the light changed to golden hour, but the character is easy to recognize. A format like
+          this can carry more than one story.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ CLOSE ============ -->
+    <footer class="close">
+      <p class="ct">The through-line</p>
+      <p>
+        Four pieces, one character. The work is choosing which shots to keep, cutting them to the
+        sound, and keeping the character recognizable from one format to the next.
+      </p>
+      <p>
+        <a class="mail" href="https://www.upwork.com/freelancers/~010414b5da3ca038af" target="_blank"
+          rel="noopener">View my Upwork profile</a>
+      </p>
+      <p class="sig">Yuki Ip · AI Video Producer</p>
+    </footer>
+
+  </div>
+</body>
+
+</html>
